@@ -9,7 +9,7 @@ void draw() {
   noFill();
   stroke(0);
 
-  float x = 0;        // arranca desde el borde izquierdo
+  float x = 0;        
   float radioAnterior = 0;
 
   for (int i = 1; i <= cant; i++) {
