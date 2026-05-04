@@ -1,0 +1,27 @@
+int cant = 6;
+
+void setup() {
+  size(800, 400);
+}
+
+void draw() {
+  background(255);
+  noFill();
+  stroke(0);
+
+  float x = 0;        // arranca desde el borde izquierdo
+  float radioAnterior = 0;
+
+  for (int i = 1; i <= cant; i++) {
+
+    float radio = i * 20; // crecimiento progresivo
+
+    // calcular posición del centro
+    x = x + radioAnterior + radio;
+
+    ellipse(x, height / 2, radio * 2, radio * 2);
+
+    // guardar radio para el próximo círculo
+    radioAnterior = radio;
+  }
+}
