@@ -13,16 +13,16 @@ void draw() {
 
   for (int i = 0; i < cant; i++) {
 
-    // Arriba izquierda
+    
     line(0, i * sepy, i * sepx, height);
 
-    // Arriba derecha
+    
     line(width, i * sepy, width - (i * sepx), height);
 
-    // Abajo derecha
+    
     line(width, height - (i * sepy), width - (i * sepx), 0);
 
-    // Abajo izquierda
+    
     line(0, height - (i * sepy), i * sepx, 0);
   }
 }
