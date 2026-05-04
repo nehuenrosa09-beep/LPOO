@@ -1,0 +1,30 @@
+int filas = 5;
+int cols = 6;
+float w, h;
+
+void setup() {
+  size(800, 600);
+  w = width / cols;
+  h = height / filas;
+}
+
+void draw() {
+  background(255);
+  stroke(0);
+  noFill();
+
+  for (int i = 0; i < filas; i++) {
+
+    boolean desplazada = (i % 2 != 0);
+    float offset = desplazada ? -w / 2 : 0;
+    int colsActual = desplazada ? cols + 1 : cols;
+
+    for (int j = 0; j < colsActual; j++) {
+
+      float x = j * w + offset;
+      float y = i * h;
+
+      rect(x, y, w, h);
+    }
+  }
+}
