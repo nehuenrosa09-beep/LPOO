@@ -1,1 +1,84 @@
+// Cantidad de columnas y filas
+int columnas = 20;
+int filas = 15;
 
+// Tamaño de cada celda
+float anchoCelda;
+float altoCelda;
+
+// Matriz para guardar distancias
+float[][] distancias;
+
+void setup() {
+  size(800, 600);
+
+  // Calcular tamaño de celdas
+  anchoCelda = width / float(columnas);
+  altoCelda = height / float(filas);
+
+  // Crear matriz
+  distancias = new float[columnas][filas];
+
+  noStroke();
+}
+
+void draw() {
+  background(0);
+
+  // Actualizar valores de distancia
+  calcularDistancias();
+
+  // Dibujar grilla
+  dibujarGrilla();
+}
+
+void calcularDistancias() {
+
+  // Distancia máxima posible en pantalla
+  float distanciaMaxima = dist(0, 0, width, height);
+
+  // Recorrer matriz
+  for (int x = 0; x < columnas; x++) {
+    for (int y = 0; y < filas; y++) {
+
+      // Centro de cada celda
+      float centroX = x * anchoCelda + anchoCelda / 2;
+      float centroY = y * altoCelda + altoCelda / 2;
+
+      // Calcular distancia al mouse
+      float d = dist(mouseX, mouseY, centroX, centroY);
+
+      // Convertir distancia en escala de grises
+      float gris = map(d, 0, distanciaMaxima, 255, 0);
+
+      // Limitar valores
+      gris = constrain(gris, 0, 255);
+
+      // Guardar valor en la matriz
+      distancias[x][y] = gris;
+    }
+  }
+}
+
+void dibujarGrilla() {
+
+  // Recorrer matriz
+  for (int x = 0; x < columnas; x++) {
+    for (int y = 0; y < filas; y++) {
+
+      // Obtener gris almacenado
+      float gris = distancias[x][y];
+
+      // Asignar color
+      fill(gris);
+
+      // Dibujar rectángulo
+      rect(
+        x * anchoCelda,
+        y * altoCelda,
+        anchoCelda,
+        altoCelda
+      );
+    }
+  }
+}
